@@ -261,4 +261,12 @@ process.on('SIGINT', () => {
   process.exit(0);
 });
 
-await client.login(config.token);
+await (async function loginWithRetry(attempt = 1) {
+  try {
+    await client.login(config.token);
+  } catch (err) {
+    const wait = Math.min(30_000, 5_000 * attempt);
+    console.error(`[login] attempt ${attempt} failed: ${err.message}. Retrying in ${wait / 1000}s`);
+    setTimeout(() => loginWithRetry(attempt + 1), wait);
+  }
+})();

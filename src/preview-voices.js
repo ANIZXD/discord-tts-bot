@@ -13,6 +13,7 @@ const VARIANTS = [
   ['madhur', 'hi-IN-MadhurNeural', null],
   ['swara', 'hi-IN-SwaraNeural', null],
   ['ava-lively', 'en-US-AvaMultilingualNeural', '+8%'],
+  ['ava-realistic', 'en-US-AvaMultilingualNeural', '+0%'],
 ];
 
 const dir = path.resolve('test-output/voices');
